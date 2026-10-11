@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/banner.svg" alt="DevHub — Your Personal Developer Workspace" width="100%" />
+<img src="assets/banner.svg" alt="DevHub — Your Personal Developer Workspace" width="100%" />
 
 <br />
 <br />
@@ -45,11 +45,11 @@ DevHub replaces scattered markdown files, messy browser bookmarks, sticky notes,
 ### 📊 Command Center & Dashboard
 *Greeting hero, live metric tiles, 14-day activity rail, due-soon tasks and latest builds, all in a light, airy layout.*
 
-<img src="docs/assets/screenshots/dashboard-light.png" alt="DevHub dashboard, light theme" width="100%" />
+<img src="assets/screenshots/dashboard-light.png" alt="DevHub dashboard, light theme" width="100%" />
 
 <br />
 
-<img src="docs/assets/screenshots/dashboard-dark.png" alt="DevHub dashboard, dark theme" width="100%" />
+<img src="assets/screenshots/dashboard-dark.png" alt="DevHub dashboard, dark theme" width="100%" />
 
 </div>
 
@@ -60,60 +60,60 @@ There is no public registration. The admin creates every account, so the login p
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/assets/screenshots/login-light.png" alt="Login, light theme" width="100%" /></td>
-    <td width="50%"><img src="docs/assets/screenshots/login-dark.png" alt="Login, dark theme" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/login-light.png" alt="Login, light theme" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/login-dark.png" alt="Login, dark theme" width="100%" /></td>
   </tr>
 </table>
 
 ### 🗂️ Projects: grid, list or compact table
 Switch the layout with the toggle next to search; each screen remembers your choice. Every project shows health (on track / at risk / off track), task progress with overdue count and due date.
 
-<img src="docs/assets/screenshots/projects-grid.png" alt="Projects, grid view" width="100%" />
+<img src="assets/screenshots/projects-grid.png" alt="Projects, grid view" width="100%" />
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/assets/screenshots/projects-list.png" alt="Projects, list view" width="100%" /></td>
-    <td width="50%"><img src="docs/assets/screenshots/projects-compact.png" alt="Projects, compact table" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/projects-list.png" alt="Projects, list view" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/projects-compact.png" alt="Projects, compact table" width="100%" /></td>
   </tr>
 </table>
 
 ### ⚡ Project hub: Pulse, schedule & effort
 Open a project for its **Pulse**: completion, time left, estimated vs actual effort, a velocity-based projected finish, a forecast that learns from how long finished tasks really took, and an explained health rating.
 
-<img src="docs/assets/screenshots/project-overview.png" alt="Project pulse, timeline, donut charts and team" width="100%" />
+<img src="assets/screenshots/project-overview.png" alt="Project pulse, timeline, donut charts and team" width="100%" />
 
 ### 👥 Team: who is working on it
 Everyone on a project sees its team; admins add people, change roles (editor / viewer) and remove them. Every change lands in the audit log.
 
-<img src="docs/assets/screenshots/project-team.png" alt="Project team" width="100%" />
+<img src="assets/screenshots/project-team.png" alt="Project team" width="100%" />
 
 ### 📋 Tasks: List, Board, Timeline & Calendar
 Drag-and-drop kanban, a Gantt-style timeline (created → due/completed, today line, project start/target and build milestones), calendar and list views.
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/assets/screenshots/project-board.png" alt="Project kanban board" width="100%" /></td>
-    <td width="50%"><img src="docs/assets/screenshots/project-tasks.png" alt="Project task timeline" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/project-board.png" alt="Project kanban board" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/project-tasks.png" alt="Project task timeline" width="100%" /></td>
   </tr>
 </table>
 
-<img src="docs/assets/screenshots/tasks-board.png" alt="Kanban board" width="100%" />
+<img src="assets/screenshots/tasks-board.png" alt="Kanban board" width="100%" />
 
 ### 🔑 Credential vault, 🔐 env vault, 🔗 links, 📝 notes & 📦 builds (inside every project)
 The **credential vault** keeps account logins (name, role, email, password, other details); the **env vault** keeps environment secrets. Both are encrypted and masked until revealed.
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/assets/screenshots/project-credentials.png" alt="Project credential vault" width="100%" /></td>
-    <td width="50%"><img src="docs/assets/screenshots/project-env.png" alt="Project env vault" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/project-credentials.png" alt="Project credential vault" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/project-env.png" alt="Project env vault" width="100%" /></td>
   </tr>
   <tr>
-    <td width="50%"><img src="docs/assets/screenshots/project-links.png" alt="Project link vault" width="100%" /></td>
-    <td width="50%"><img src="docs/assets/screenshots/project-activity.png" alt="Project activity timeline" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/project-links.png" alt="Project link vault" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/project-activity.png" alt="Project activity timeline" width="100%" /></td>
   </tr>
   <tr>
-    <td width="50%"><img src="docs/assets/screenshots/project-notes.png" alt="Project notes" width="100%" /></td>
-    <td width="50%"><img src="docs/assets/screenshots/project-builds.png" alt="Project builds" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/project-notes.png" alt="Project notes" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/project-builds.png" alt="Project builds" width="100%" /></td>
   </tr>
 </table>
 
@@ -122,32 +122,32 @@ Admins create accounts, reset passwords, change roles, oversee every project and
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/assets/screenshots/admin-overview.png" alt="Admin overview with clickable stat cards" width="100%" /></td>
-    <td width="50%"><img src="docs/assets/screenshots/admin-audit.png" alt="Admin audit log" width="100%" /></td>
-    <td width="50%"><img src="docs/assets/screenshots/admin-projects.png" alt="Admin projects" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/admin-overview.png" alt="Admin overview with clickable stat cards" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/admin-audit.png" alt="Admin audit log" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/admin-projects.png" alt="Admin projects" width="100%" /></td>
   </tr>
   <tr>
-    <td width="50%"><img src="docs/assets/screenshots/admin-users.png" alt="Admin users list" width="100%" /></td>
-    <td width="50%"><img src="docs/assets/screenshots/admin-create-user.png" alt="Create user dialog" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/admin-users.png" alt="Admin users list" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/admin-create-user.png" alt="Create user dialog" width="100%" /></td>
   </tr>
 </table>
 
 ### 📝 Markdown Notes, 🧩 Snippets & 🔑 Encrypted Vault
 
-<img src="docs/assets/screenshots/notes-editor.png" alt="Markdown notes editor" width="100%" />
+<img src="assets/screenshots/notes-editor.png" alt="Markdown notes editor" width="100%" />
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/assets/screenshots/snippets-grid.png" alt="Code snippets, grid view" width="100%" /></td>
-    <td width="50%"><img src="docs/assets/screenshots/snippets-compact.png" alt="Code snippets, compact view" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/snippets-grid.png" alt="Code snippets, grid view" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/snippets-compact.png" alt="Code snippets, compact view" width="100%" /></td>
   </tr>
   <tr>
-    <td width="50%"><img src="docs/assets/screenshots/vault.png" alt="Credential vault" width="100%" /></td>
-    <td width="50%"><img src="docs/assets/screenshots/vault-env.png" alt="Env vault" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/vault.png" alt="Credential vault" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/vault-env.png" alt="Env vault" width="100%" /></td>
   </tr>
   <tr>
-    <td width="50%"><img src="docs/assets/screenshots/notes-grid.png" alt="Notes, grid view" width="100%" /></td>
-    <td width="50%"><img src="docs/assets/screenshots/builds-grid.png" alt="Builds, grid view" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/notes-grid.png" alt="Notes, grid view" width="100%" /></td>
+    <td width="50%"><img src="assets/screenshots/builds-grid.png" alt="Builds, grid view" width="100%" /></td>
   </tr>
 </table>
 
@@ -156,8 +156,8 @@ Bottom tab bar, sheets and touch-friendly controls.
 
 <table>
   <tr>
-    <td width="50%" align="center"><img src="docs/assets/screenshots/mobile-dashboard.png" alt="Mobile dashboard" width="60%" /></td>
-    <td width="50%" align="center"><img src="docs/assets/screenshots/mobile-tasks.png" alt="Mobile tasks" width="60%" /></td>
+    <td width="50%" align="center"><img src="assets/screenshots/mobile-dashboard.png" alt="Mobile dashboard" width="60%" /></td>
+    <td width="50%" align="center"><img src="assets/screenshots/mobile-tasks.png" alt="Mobile tasks" width="60%" /></td>
   </tr>
 </table>
 
@@ -187,7 +187,7 @@ DevHub enforces strict separation of concerns with a modern zero-trust architect
 
 <div align="center">
 
-<img src="docs/assets/architecture.svg" alt="DevHub System Architecture Diagram" width="100%" />
+<img src="assets/architecture.svg" alt="DevHub System Architecture Diagram" width="100%" />
 
 </div>
 

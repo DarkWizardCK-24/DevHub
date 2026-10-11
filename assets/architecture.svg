@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="DevHub architecture: Next.js frontend, FastAPI backend, Supabase Auth, PostgreSQL, and Storage">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrowIndigo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#6366f1"/>
+    </marker>
+    <marker id="arrowEmerald" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#10b981"/>
+    </marker>
+    <style>
+      .t { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+      .h { font-size: 20px; font-weight: 700; fill: #f8fafc; }
+      .s { font-size: 14px; font-weight: 500; fill: #94a3b8; }
+      .l { font-size: 14px; font-weight: 600; fill: #f8fafc; }
+      .m { font-size: 13px; fill: #94a3b8; }
+      .box { fill: #111827; stroke: #1e293b; stroke-width: 1.5; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="520" rx="20" fill="#0b0f19" stroke="#1e293b"/>
+
+  <!-- Browser / Next.js -->
+  <g transform="translate(40 140)">
+    <rect class="box" width="310" height="230" rx="14"/>
+    <rect width="310" height="5" rx="2.5" fill="#6366f1"/>
+    <text class="t h" x="24" y="48">Next.js 16 Frontend</text>
+    <text class="t s" x="24" y="74">React 19 · Tailwind v4 · App Router</text>
+    <text class="t m" x="24" y="112">• Design system &amp; theme provider</text>
+    <text class="t m" x="24" y="136">• Supabase Auth client &amp; sessions</text>
+    <text class="t m" x="24" y="160">• Proxy middleware session refresh</text>
+    <text class="t m" x="24" y="184">• Typed API client with auto Bearer tokens</text>
+    <text class="t m" x="24" y="208">• Offline resilient optimistic UI</text>
+  </g>
+
+  <!-- FastAPI -->
+  <g transform="translate(450 140)">
+    <rect class="box" width="310" height="230" rx="14"/>
+    <rect width="310" height="5" rx="2.5" fill="#4f46e5"/>
+    <text class="t h" x="24" y="48">FastAPI Backend</text>
+    <text class="t s" x="24" y="74">Python 3.12 · Uvicorn · Render</text>
+    <text class="t m" x="24" y="112">• Validates JWT on every request</text>
+    <text class="t m" x="24" y="136">• Role-based access control (RBAC)</text>
+    <text class="t m" x="24" y="160">• Full-text search &amp; activity timeline</text>
+    <text class="t m" x="24" y="184">• AES-256-GCM encrypted credential vault</text>
+    <text class="t m" x="24" y="208">• Strict Pydantic v2 schemas</text>
+  </g>
+
+  <!-- Supabase -->
+  <g transform="translate(860 50)">
+    <rect class="box" width="300" height="420" rx="14"/>
+    <rect width="300" height="5" rx="2.5" fill="#10b981"/>
+    <text class="t h" x="24" y="44">Supabase Cloud</text>
+    <text class="t s" x="24" y="68">Managed Infrastructure</text>
+
+    <g transform="translate(20 86)">
+      <rect width="260" height="88" rx="10" fill="#0f172a" stroke="#1e293b"/>
+      <text class="t l" x="18" y="30">Auth Engine</text>
+      <text class="t m" x="18" y="52">PKCE login, OAuth, magic links,</text>
+      <text class="t m" x="18" y="70">password resets &amp; JWT issues</text>
+    </g>
+
+    <g transform="translate(20 186)">
+      <rect width="260" height="106" rx="10" fill="#0f172a" stroke="#1e293b"/>
+      <text class="t l" x="18" y="30">PostgreSQL Database</text>
+      <text class="t m" x="18" y="52">14 tables with foreign keys</text>
+      <text class="t m" x="18" y="70">Full-text search vector indexes</text>
+      <text class="t m" x="18" y="88">Row-Level Security (RLS) locked</text>
+    </g>
+
+    <g transform="translate(20 304)">
+      <rect width="260" height="88" rx="10" fill="#0f172a" stroke="#1e293b"/>
+      <text class="t l" x="18" y="30">Storage Bucket</text>
+      <text class="t m" x="18" y="52">Private encrypted assets</text>
+      <text class="t m" x="18" y="70">60-second expiring signed URLs</text>
+    </g>
+  </g>
+
+  <!-- 1: browser → auth -->
+  <path d="M195 140 V 85 H 855" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#arrow)"/>
+  <circle cx="195" cy="112" r="13" fill="#1e1b4b"/>
+  <text class="t" x="195" y="117" font-size="13" font-weight="700" fill="#a5b4fc" text-anchor="middle">1</text>
+  <text class="t m" x="430" y="72">Sign in → Issue Bearer JWT token</text>
+
+  <!-- 2: browser → API -->
+  <path d="M350 255 H 445" fill="none" stroke="#6366f1" stroke-width="2.5" marker-end="url(#arrowIndigo)"/>
+  <circle cx="398" cy="226" r="13" fill="#1e1b4b"/>
+  <text class="t" x="398" y="231" font-size="13" font-weight="700" fill="#818cf8" text-anchor="middle">2</text>
+  <text class="t m" x="355" y="286">REST + JWT</text>
+
+  <!-- 3: API → Postgres & Storage -->
+  <path d="M760 240 H 855" fill="none" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrowEmerald)"/>
+  <path d="M760 300 C 810 300, 810 395, 855 395" fill="none" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrowEmerald)"/>
+  <circle cx="810" cy="216" r="13" fill="#064e3b"/>
+  <text class="t" x="810" y="221" font-size="13" font-weight="700" fill="#34d399" text-anchor="middle">3</text>
+
+  <text class="t m" x="40" y="482">1  Frontend signs in via Supabase Auth  ·  2  FastAPI verifies token cryptographically on every request  ·  3  API communicates with DB &amp; private storage</text>
+</svg>
