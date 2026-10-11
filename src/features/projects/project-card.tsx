@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { AlertTriangle, CalendarDays, CheckCircle2, Clock3, Pin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { ProjectThumbnail } from "@/components/shared/project-thumbnail";
 import { ProgressRing } from "@/components/ui/progress-ring";
 import { PRIORITY, PROJECT_STATUS } from "@/lib/constants";
 import { dueLabel, formatDate } from "@/lib/format";
@@ -24,15 +25,8 @@ export function ProjectCard({ project }: { project: Project }) {
       href={`/projects/${project.id}`}
       className="group relative flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-line/70 bg-surface shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-line-strong hover:shadow-pop"
     >
-      {/* color band */}
-      <div
-        aria-hidden
-        className="relative h-16 overflow-hidden"
-        style={{ background: `linear-gradient(135deg, ${project.color}, color-mix(in srgb, ${project.color} 45%, #8a5cf6))` }}
-      >
-        <div className="absolute -top-8 -right-6 size-32 rounded-full bg-white/15 blur-2xl transition-transform duration-500 group-hover:scale-125" />
-        <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(white_1px,transparent_1px)] [background-size:14px_14px]" />
-      </div>
+      {/* unique, permanent graffiti / gradient thumbnail */}
+      <ProjectThumbnail projectId={project.id} className="h-24 [&_svg]:transition-transform [&_svg]:duration-500 group-hover:[&_svg]:scale-110" />
 
       <div className="relative -mt-7 flex items-end justify-between px-5">
         <div className="grid size-12 place-items-center rounded-2xl border-4 border-surface text-lg font-medium text-white shadow-card" style={{ backgroundColor: project.color }}>

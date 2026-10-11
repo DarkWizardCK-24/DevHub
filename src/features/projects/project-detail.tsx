@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ActivityEntry, ActivityTimeline } from "@/features/activity/activity-timeline";
 import { BuildsView } from "@/features/builds/builds-view";
 import { FilesView } from "@/features/files/files-view";
@@ -35,6 +35,7 @@ import { DonutChart } from "@/components/ui/donut-chart";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
+import { ProjectThumbnail, useAssignThumbnails } from "@/components/shared/project-thumbnail";
 import { ErrorState } from "@/components/ui/error-state";
 import { ProgressRing } from "@/components/ui/progress-ring";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -185,6 +186,8 @@ export function ProjectDetailView({ projectId, initialTab = "overview" }: { proj
   const [editing, setEditing] = useState(false);
   const [confirm, confirmDialog] = useConfirm();
   const { data: project, error, isLoading, mutate } = useApi<Detail>(`/projects/${projectId}`);
+  const thumbSource = useMemo(() => (project ? [project] : undefined), [project]);
+  useAssignThumbnails(thumbSource); // saves this project's thumbnail so it never changes
 
   const setTab = (next: ProjectTab) => {
     setTabState(next);
@@ -220,14 +223,7 @@ export function ProjectDetailView({ projectId, initialTab = "overview" }: { proj
       </Link>
 
       <Card className="relative mb-6 overflow-hidden">
-        <div
-          aria-hidden
-          className="relative h-28 overflow-hidden md:h-32"
-          style={{ background: `linear-gradient(120deg, ${project.color}, color-mix(in srgb, ${project.color} 40%, #8a5cf6))` }}
-        >
-          <div className="absolute -top-16 right-10 size-64 rounded-full bg-white/15 blur-3xl" />
-          <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(white_1px,transparent_1px)] [background-size:16px_16px]" />
-        </div>
+        <ProjectThumbnail projectId={project.id} className="h-28 md:h-32" />
 
         <div className="px-5 pb-5 md:px-7 md:pb-6">
           <div className="relative z-10 -mt-9 flex items-end justify-between gap-4">

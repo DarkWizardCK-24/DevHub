@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { AlertTriangle, CalendarDays, Pin } from "lucide-react";
+import { ProjectThumbnail } from "@/components/shared/project-thumbnail";
 import { Badge } from "@/components/ui/badge";
 import { PRIORITY, PROJECT_STATUS } from "@/lib/constants";
 import { dueLabel, formatDate } from "@/lib/format";
@@ -33,7 +34,7 @@ export function ProjectRow({ project }: { project: Project }) {
       href={`/projects/${project.id}`}
       className="group flex items-center gap-4 rounded-[var(--radius-card)] border border-line/70 bg-surface p-3.5 shadow-card transition-all hover:border-line-strong hover:shadow-pop"
     >
-      <span className="h-12 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: project.color }} aria-hidden />
+      <ProjectThumbnail projectId={project.id} className="size-14 shrink-0 rounded-xl shadow-card ring-1 ring-black/5" />
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-1.5">
           {project.is_pinned && <Pin className="size-3.5 shrink-0 fill-accent text-accent" aria-label="Pinned" />}

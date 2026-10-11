@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FolderIllustration } from "@/components/illustrations";
 import { PageHeader } from "@/components/shell/page-header";
+import { useAssignThumbnails } from "@/components/shared/project-thumbnail";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -45,6 +46,7 @@ export function ProjectsView({ openNew = false }: { openNew?: boolean }) {
     q,
     limit: 200,
   });
+  useAssignThumbnails(data?.items); // each project gets its own unique, permanent thumbnail
 
   return (
     <>
