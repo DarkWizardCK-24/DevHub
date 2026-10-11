@@ -1,20 +1,26 @@
+import { redirect } from "next/navigation";
 import { AppShell } from "@/components/shell/app-shell";
+import { SessionProblem } from "@/components/shell/session-problem";
 import { SetupRequired } from "@/components/setup/setup-required";
 import { AdminTabs } from "@/features/admin/components/admin-tabs";
-import { requireAdmin } from "@/lib/auth/session";
+import { loadProfile } from "@/lib/auth/session";
 import { isSupabaseConfigured } from "@/lib/env";
 
 /**
- * Admin area. requireAdmin() redirects non-admins before anything renders;
+ * Admin area. Non-admins are redirected before anything renders;
  * FastAPI independently rejects non-admin calls to /api/admin/*, so hiding
  * the UI is never the only protection.
  */
 export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
   if (!isSupabaseConfigured) return <SetupRequired />;
-  const profile = await requireAdmin();
+  const result = await loadProfile();
+  if ("error" in result) {
+    return <SessionProblem status={result.error.status} message={result.error.message} requestId={result.error.requestId} />;
+  }
+  if (result.profile.role !== "admin") redirect("/dashboard");
 
   return (
-    <AppShell profile={profile}>
+    <AppShell profile={result.profile}>
       <AdminTabs />
       {children}
     </AppShell>

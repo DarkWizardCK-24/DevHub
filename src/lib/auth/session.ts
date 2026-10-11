@@ -5,6 +5,31 @@ import { serverApi } from "@/lib/api/server";
 import { createClient } from "@/lib/supabase/server";
 import type { Profile } from "./types";
 
+export type ProfileResult = { profile: Profile } | { error: ApiError };
+
+/**
+ * Loads the signed-in user's profile, or redirects to /login when there is no session.
+ *
+ * Any other API failure (deactivated account, missing profile, API down) is RETURNED instead of
+ * thrown. In production React replaces a Server Component's error message with "Minified React
+ * error #441", so layouts use this to show the real reason on screen.
+ */
+export const loadProfile = cache(async (): Promise<ProfileResult> => {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getClaims();
+  if (!data?.claims) redirect("/login");
+
+  try {
+    return { profile: await serverApi<Profile>("/me") };
+  } catch (error) {
+    if (error instanceof ApiError) {
+      if (error.status === 401) redirect("/login");
+      return { error };
+    }
+    throw error;
+  }
+});
+
 /**
  * The signed-in user's profile, or a redirect to /login.
  *
@@ -13,16 +38,9 @@ import type { Profile } from "./types";
  * one request reaches the API.
  */
 export const requireProfile = cache(async (): Promise<Profile> => {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getClaims();
-  if (!data?.claims) redirect("/login");
-
-  try {
-    return await serverApi<Profile>("/me");
-  } catch (error) {
-    if (error instanceof ApiError && error.status === 401) redirect("/login");
-    throw error; // 403 (deactivated), 503, network → nearest error boundary
-  }
+  const result = await loadProfile();
+  if ("error" in result) throw result.error; // 403 (deactivated), 503, network → nearest error boundary
+  return result.profile;
 });
 
 export async function requireAdmin(): Promise<Profile> {
