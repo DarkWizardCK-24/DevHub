@@ -13,6 +13,7 @@ import { ErrorState } from "@/components/ui/error-state";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useDebouncedValue } from "@/hooks/use-debounced-value";
 import { api } from "@/lib/api/client";
+import { formatDate } from "@/lib/format";
 import { useProfile } from "@/lib/auth/profile-context";
 import { displayName, type Profile } from "@/lib/auth/types";
 import type { UserPage } from "../types";
@@ -152,7 +153,7 @@ export function UsersManager() {
                     <Badge tone={user.is_active ? "mint" : "coral"} dot>
                       {user.is_active ? "Active" : "Deactivated"}
                     </Badge>
-                    <span className="hidden text-xs text-faint lg:inline">Joined {new Date(user.created_at).toLocaleDateString()}</span>
+                    <span className="hidden text-xs text-faint lg:inline">Joined {formatDate(user.created_at, { day: "numeric", month: "short", year: "numeric" })}</span>
                     <div className="ml-auto flex gap-1.5 md:ml-2">
                       <Button size="sm" variant="secondary" onClick={() => setResetting(user)}>
                         <KeyRound className="size-3.5" />

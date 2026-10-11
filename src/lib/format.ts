@@ -11,10 +11,51 @@ export function toDateOnly(date: Date): string {
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
+/** Every timestamp in the app is shown in Indian Standard Time (IST, UTC+05:30), whatever the viewer's device or server clock says. */
+export const APP_TIMEZONE = "Asia/Kolkata";
+export const APP_TIMEZONE_LABEL = "IST";
+
 export function formatDate(value: string | null | undefined, options: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" }) {
   if (!value) return "";
-  const date = value.length === 10 ? parseDateOnly(value) : new Date(value);
-  return date.toLocaleDateString(undefined, options);
+  // Date-only values ("YYYY-MM-DD") are calendar days, not instants, so they are not shifted.
+  if (value.length === 10) return parseDateOnly(value).toLocaleDateString(undefined, options);
+  return new Date(value).toLocaleDateString(undefined, { ...options, timeZone: APP_TIMEZONE });
+}
+
+/** "11 Oct 2026, 10:55:39 pm IST" */
+export function formatDateTime(value: string | null | undefined, withSeconds = true): string {
+  if (!value) return "";
+  const text = new Date(value).toLocaleString("en-IN", {
+    timeZone: APP_TIMEZONE,
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    ...(withSeconds ? { second: "2-digit" } : {}),
+  });
+  return `${text} ${APP_TIMEZONE_LABEL}`;
+}
+
+/** "10:55 pm IST" */
+export function formatTime(value: string | null | undefined): string {
+  if (!value) return "";
+  const text = new Date(value).toLocaleTimeString("en-IN", { timeZone: APP_TIMEZONE, hour: "numeric", minute: "2-digit" });
+  return `${text} ${APP_TIMEZONE_LABEL}`;
+}
+
+/** Calendar day in IST as "YYYY-MM-DD" (used to group items by day). */
+export function istDayKey(value: string | number | Date): string {
+  return new Date(value).toLocaleDateString("en-CA", { timeZone: APP_TIMEZONE });
+}
+
+/** "Today", "Yesterday" or a long date, judged on the IST calendar. */
+export function istDayLabel(value: string): string {
+  const key = istDayKey(value);
+  const now = Date.now();
+  if (key === istDayKey(now)) return "Today";
+  if (key === istDayKey(now - 86_400_000)) return "Yesterday";
+  return new Date(value).toLocaleDateString("en-IN", { timeZone: APP_TIMEZONE, weekday: "long", month: "long", day: "numeric" });
 }
 
 const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });

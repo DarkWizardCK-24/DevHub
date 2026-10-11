@@ -25,6 +25,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { ErrorState } from "@/components/ui/error-state";
 import { ListSkeleton } from "@/components/ui/list-skeleton";
 import { api } from "@/lib/api/client";
+import { formatTime, istDayLabel } from "@/lib/format";
 import type { ActivityItem, ActivityPage } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { activityHref, describeActivity } from "./describe";
@@ -43,15 +44,6 @@ const ICONS: Record<string, { icon: typeof History; tone: string }> = {
   tag: { icon: History, tone: "bg-raised text-muted" },
 };
 
-function dayLabel(date: Date) {
-  const today = new Date();
-  const yesterday = new Date();
-  yesterday.setDate(today.getDate() - 1);
-  if (date.toDateString() === today.toDateString()) return "Today";
-  if (date.toDateString() === yesterday.toDateString()) return "Yesterday";
-  return date.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
-}
-
 export function ActivityEntry({ item, showProject = true }: { item: ActivityItem; showProject?: boolean }) {
   const isCompletion = item.action === "task.completed" || item.action === "build.completed";
   const { icon: Icon, tone } = isCompletion ? { icon: CheckCircle2, tone: "bg-mint-soft text-mint" } : (ICONS[item.entity_type] ?? { icon: History, tone: "bg-raised text-muted" });
@@ -69,7 +61,7 @@ export function ActivityEntry({ item, showProject = true }: { item: ActivityItem
           <p className="text-sm">{text}</p>
         )}
         <div className="mt-0.5 flex flex-wrap items-center gap-x-3 text-xs text-faint">
-          <time dateTime={item.created_at}>{new Date(item.created_at).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })}</time>
+          <time dateTime={item.created_at}>{formatTime(item.created_at)}</time>
           {item.actor_name && <span>{item.actor_name}</span>}
           {showProject && <ProjectBadge project={item.project} asLink={false} />}
         </div>
@@ -96,7 +88,7 @@ export function ActivityTimeline({ projectId }: { projectId?: string }) {
   // Group consecutive entries by local day.
   const groups: { label: string; items: ActivityItem[] }[] = [];
   for (const item of items) {
-    const label = dayLabel(new Date(item.created_at));
+    const label = istDayLabel(item.created_at);
     const last = groups.at(-1);
     if (last?.label === label) last.items.push(item);
     else groups.push({ label, items: [item] });

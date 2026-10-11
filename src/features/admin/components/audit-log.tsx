@@ -12,6 +12,7 @@ import { SelectField } from "@/components/ui/select-field";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useDebouncedValue } from "@/hooks/use-debounced-value";
 import { api } from "@/lib/api/client";
+import { formatDateTime } from "@/lib/format";
 import type { AuditEntry, AuditPage, Page } from "@/lib/types";
 import type { Profile } from "@/lib/auth/types";
 import { cn } from "@/lib/utils";
@@ -34,8 +35,7 @@ const VERB_TONE: Record<string, Tone> = {
   deleted: "coral",
 };
 
-const stamp = (iso: string) =>
-  new Date(iso).toLocaleString(undefined, { year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit" });
+const stamp = (iso: string) => formatDateTime(iso);
 
 function browser(ua: string | null) {
   if (!ua) return "unknown";

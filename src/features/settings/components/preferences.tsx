@@ -8,6 +8,7 @@ import { Card, CardHeader } from "@/components/ui/card";
 import { useTheme, type Theme } from "@/components/theme/use-theme";
 import { useSignOut } from "@/hooks/use-sign-out";
 import { useProfile } from "@/lib/auth/profile-context";
+import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 export function AppearanceCard() {
@@ -71,7 +72,7 @@ export function AccountCard() {
         </div>
         <div className="flex items-center justify-between py-3">
           <dt className="text-muted">Member since</dt>
-          <dd className="font-medium">{new Date(profile.created_at).toLocaleDateString(undefined, { dateStyle: "medium" })}</dd>
+          <dd className="font-medium">{formatDate(profile.created_at, { dateStyle: "medium" })}</dd>
         </div>
       </dl>
       <div className="flex flex-col gap-2 p-5 pt-3 md:flex-row">
