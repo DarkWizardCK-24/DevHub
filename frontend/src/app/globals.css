@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+/*
+ * DevHub design tokens.
+ * Components use semantic names (bg-surface, text-muted, border-line) and never
+ * raw hex values, so the light/dark theme is controlled entirely from here.
+ * The theme is set by data-theme on <html> (see ThemeScript in layout.tsx).
+ */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  /* Light: airy porcelain with a violet-indigo accent */
+  --bg: #f5f6fb;
+  --surface: #ffffff;
+  --surface-2: #f1f2f9;
+  --raised: #e9ebf5;
+  --line: #e6e8f2;
+  --line-strong: #cfd3e6;
+  --ink: #181b2e;
+  --muted: #646a85;
+  --faint: #959bb5;
+
+  --accent: #5b5ef0;
+  --accent-ink: #ffffff;
+  --accent-soft: #eeefff;
+  --accent-glow: rgba(91, 94, 240, 0.28);
+  --accent-grad: linear-gradient(135deg, #6a6cf5 0%, #8a5cf6 100%);
+
+  --iris: #8250f0;
+  --iris-soft: #f3edff;
+  --mint: #0f9d77;
+  --mint-soft: #e6f8f1;
+  --coral: #e5484d;
+  --coral-soft: #fdecee;
+  --sky: #0a8fd1;
+  --sky-soft: #e8f5fd;
+  --amber: #d98a0b;
+  --amber-soft: #fdf3dc;
+
+  --shadow-card: 0 1px 2px rgb(24 27 46 / 0.04), 0 4px 16px -4px rgb(24 27 46 / 0.06);
+  --shadow-pop: 0 24px 48px -12px rgb(24 27 46 / 0.18), 0 8px 16px -8px rgb(24 27 46 / 0.08);
+  --ambient: radial-gradient(60rem 36rem at 12% -8%, rgb(106 108 245 / 0.10), transparent 60%),
+    radial-gradient(48rem 30rem at 100% 0%, rgb(138 92 246 / 0.08), transparent 55%);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  /* Dark: deep ink with luminous violet */
+  --bg: #090a13;
+  --surface: #11131f;
+  --surface-2: #0d0f1a;
+  --raised: #1b1e30;
+  --line: #1d2033;
+  --line-strong: #2d3250;
+  --ink: #eef0fb;
+  --muted: #9399b8;
+  --faint: #636a8c;
+
+  --accent: #7b7ff7;
+  --accent-ink: #ffffff;
+  --accent-soft: #1c1d44;
+  --accent-glow: rgba(123, 127, 247, 0.35);
+  --accent-grad: linear-gradient(135deg, #6a6cf5 0%, #9061f9 100%);
+
+  --iris: #a78bfa;
+  --iris-soft: #26184d;
+  --mint: #34d3a4;
+  --mint-soft: #0b2e25;
+  --coral: #ff7a85;
+  --coral-soft: #3a1119;
+  --sky: #4cc2f5;
+  --sky-soft: #0b2a3d;
+  --amber: #f5b742;
+  --amber-soft: #3a2806;
+
+  --shadow-card: 0 0 0 1px rgb(255 255 255 / 0.04), 0 8px 24px -8px rgb(0 0 0 / 0.55);
+  --shadow-pop: 0 28px 60px -12px rgb(0 0 0 / 0.7), 0 0 0 1px rgb(255 255 255 / 0.07);
+  --ambient: radial-gradient(60rem 36rem at 12% -8%, rgb(106 108 245 / 0.16), transparent 60%),
+    radial-gradient(48rem 30rem at 100% 0%, rgb(144 97 249 / 0.12), transparent 55%);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-raised: var(--raised);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-iris: var(--iris);
+  --color-iris-soft: var(--iris-soft);
+  --color-mint: var(--mint);
+  --color-mint-soft: var(--mint-soft);
+  --color-coral: var(--coral);
+  --color-coral-soft: var(--coral-soft);
+  --color-sky: var(--sky);
+  --color-sky-soft: var(--sky-soft);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+
+  --font-display: var(--font-sans);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-pop: var(--shadow-pop);
+
+  /* Medium-weight type: body text is 500, emphasis steps up from there */
+  --font-weight-normal: 500;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-rail-in: rail-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Radius scale follows hierarchy: chips < controls < cards < sheets */
+:root {
+  --radius-chip: 7px;
+  --radius-control: 10px;
+  --radius-card: 18px;
+  --radius-sheet: 24px;
+}
+
+@keyframes shimmer {
+  from { background-position: 150% 0; }
+  to { background-position: -50% 0; }
+}
+
+@keyframes rail-in {
+  from { transform: scaleY(0.2); opacity: 0; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background: var(--ambient), var(--bg);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+}
+
+@layer utilities {
+  .bg-accent-grad { background-image: var(--accent-grad); }
+  .shadow-glow { box-shadow: 0 8px 24px -8px var(--accent-glow); }
+  .glass { background: color-mix(in srgb, var(--surface) 72%, transparent); backdrop-filter: blur(14px) saturate(1.4); }
+  .text-gradient { background-image: var(--accent-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+  .pt-safe { padding-top: env(safe-area-inset-top); }
+  .scrollbar-none { scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---- Syntax highlighting (highlight.js classes), mapped to theme tokens ---- */
+.hljs { color: var(--ink); }
+.hljs-comment, .hljs-quote { color: var(--faint); font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-built_in { color: var(--iris); }
+.hljs-string, .hljs-attr-value, .hljs-regexp, .hljs-addition { color: var(--mint); }
+.hljs-number, .hljs-symbol, .hljs-bullet { color: var(--accent); }
+.hljs-title, .hljs-title.function_, .hljs-section { color: var(--sky); }
+.hljs-attr, .hljs-variable, .hljs-template-variable, .hljs-property { color: var(--accent); }
+.hljs-type, .hljs-title.class_ { color: var(--coral); }
+.hljs-meta, .hljs-deletion { color: var(--coral); }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 600; }
+
+/* ---- Rendered Markdown (notes) ---- */
+.markdown { font-size: 15px; line-height: 1.7; color: var(--ink); overflow-wrap: anywhere; }
+.markdown > :first-child { margin-top: 0; }
+.markdown h1, .markdown h2, .markdown h3, .markdown h4 { font-weight: 600; line-height: 1.25; margin: 1.6em 0 0.6em; }
+.markdown h1 { font-size: 1.75rem; }
+.markdown h2 { font-size: 1.35rem; padding-bottom: 0.3em; border-bottom: 1px solid var(--line); }
+.markdown h3 { font-size: 1.1rem; }
+.markdown p, .markdown ul, .markdown ol, .markdown blockquote, .markdown table { margin: 0.9em 0; }
+.markdown ul { list-style: disc; padding-left: 1.4em; }
+.markdown ol { list-style: decimal; padding-left: 1.4em; }
+.markdown li { margin: 0.25em 0; }
+.markdown li:has(> input[type="checkbox"]) { list-style: none; margin-left: -1.3em; }
+.markdown input[type="checkbox"] { margin-right: 0.5em; accent-color: var(--accent); }
+.markdown a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.markdown blockquote { border-left: 3px solid var(--accent); padding: 0.2em 0 0.2em 1em; color: var(--muted); }
+.markdown hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
+.markdown table { width: 100%; border-collapse: collapse; font-size: 14px; display: block; overflow-x: auto; }
+.markdown th, .markdown td { border: 1px solid var(--line); padding: 0.45em 0.75em; text-align: left; }
+.markdown th { background: var(--surface-2); font-weight: 600; }
+.markdown .inline-code { font-family: var(--font-mono), monospace; font-size: 0.86em; background: var(--raised); border-radius: 5px; padding: 0.12em 0.4em; }
+.markdown img { max-width: 100%; border-radius: var(--radius-control); }
