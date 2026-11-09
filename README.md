@@ -4,6 +4,8 @@
 
 # DevHub
 
+[![CI](https://github.com/DarkWizardCK-24/DevHub/actions/workflows/ci.yml/badge.svg)](https://github.com/DarkWizardCK-24/DevHub/actions/workflows/ci.yml) [![Live demo](https://img.shields.io/badge/Live-demo-2ea44f?logo=vercel&logoColor=white)](https://dev-hub-one-opal.vercel.app) ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white) ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?logo=supabase&logoColor=white)
+
 </div>
 
 ## Screenshots
